@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goodee.dao.DAO">
+	<select id="count" resultType="int">
+		select count(*) from user where userid=#{userid} and password=#{password}
+	</select>
+	
+	<select id="getList" resultType="BbsVO">
+		select id, category, title, owner, content, create_date from bbs order by id desc limit 0,15 
+	</select>
+	
+	<select id="getInfo" resultType="userVO">
+		select id, username, userid from user where userid=#{userid}
+	</select>
+	
+	<select id="getContent" resultType="bbsVO">
+		select id, category, title, content, owner_id from bbs where title=#{title}
+	</select>
+	
+	<select id="comment" resultType="commentVO">
+		select owner, content from user_comment where bbs_id=#{bbsId}
+	</select>
+</mapper>
