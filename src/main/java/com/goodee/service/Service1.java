@@ -50,24 +50,19 @@ public class Service1 {
 	
 	//대댓글 가져오기
 	public List<UserCommentVO> getRecomm(Model model) {
-		//모든 댓글 정보 가져오기
-	//	UserCommentVO vo = new UserCommentVO();
-	/*	for(int i=0; i<dao.allcomm().size(); i++) {
-			list.setBbsId(dao.allcomm().get(i).getBbsId());
-			list.setOrderId(dao.allcomm().get(i).getOrderId());
-			
-			//상세페이지 들어갔을 때 글번호, 댓글의 id 넣어주기
-			vo.setBbsId(list.getBbsId());
-			vo.setOrderId(list.getOrderId());
-		}	*/
-	//	model.addAttribute("recomment", dao.recomm(vo));
 		model.addAttribute("recomment", dao.recomm());
+		//게시글의 id 받아와서 commentvo의 bbs_id와 매칭
+		//order_id는 1번에 div에 대댓글 달린거면 id가 1
 		return dao.recomm();
-	//	System.out.println(vo.getBbsId());
-	//	System.out.println(vo.getOrderId());
-		
-		
-		
+
+	}
+	
+	public UserCommentVO putcomm(int id, UserVO uservo, UserCommentVO commvo) {
+		commvo.setBbsId(id);
+		commvo.setOwner(uservo.getUsername());
+		commvo.setOwnerId(uservo.getId());
+		dao.putcomm(commvo);
+		return commvo;
 	}
 
 	

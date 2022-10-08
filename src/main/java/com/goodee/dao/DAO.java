@@ -17,10 +17,10 @@ public interface DAO {
 	public UserVO getInfo(UserVO vo);
 	
 	public List<UserCommentVO> comment(BbsVO vo);
-	public List<UserCommentVO> recomm(UserCommentVO vo);
 	
 	//리댓글 정보 다가져오기
 	public List<UserCommentVO> recomm();
 	
+	public int putcomm(UserCommentVO vo);
 
 }

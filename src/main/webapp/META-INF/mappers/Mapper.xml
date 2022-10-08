@@ -27,5 +27,9 @@
 		select id, bbs_id, owner, owner_id, content, order_id from user_comment where not order_id in ('0')
 	</select>
 
+	<insert id="putcomm" parameterType="commentVO" >
+		insert into user_comment(bbs_id, owner_id, owner, content)
+		value (#{bbsId}, #{ownerId}, #{owner}, #{content})
+	</insert>
 	
 </mapper>
