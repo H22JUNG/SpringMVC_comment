@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,13 +35,11 @@
 		<button>뒤로가기</button>
 	</form>
 
-	<div id="firstDiv">
-	<h4>${comment.owner}</h4>
-	<p>${comment.content}</p>
-	</div>
-	<div>
-	<h4>댓글쓴이</h4>
-	<p>댓글내용</p>
-	</div>
+	<c:forEach var="item" items="${comment}">
+		<div>
+		<h4>${item.owner}</h4>
+		<p>${item.content}</p>
+		</div>
+	</c:forEach>
 </body>
 </html>

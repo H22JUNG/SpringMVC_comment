@@ -19,7 +19,13 @@
 		select id, category, title, content, owner_id from bbs where title=#{title}
 	</select>
 	
-	<select id="comment" resultType="commentVO">
-		select owner, content from user_comment where bbs_id=#{bbsId}
+	<select id="comment" resultType="commentVO" parameterType="bbsVO">
+		select id, bbs_id, owner, content, order_id from user_comment where bbs_id=#{id} and order_id=0
 	</select>
+	
+	<select id="recomm" resultType="commentVO" >
+		select id, bbs_id, owner, owner_id, content, order_id from user_comment where not order_id in ('0')
+	</select>
+
+	
 </mapper>
