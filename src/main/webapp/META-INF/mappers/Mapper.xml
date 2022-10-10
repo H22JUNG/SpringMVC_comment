@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="comment" resultType="commentVO" parameterType="bbsVO">
-		select id, bbs_id, owner, content, order_id from user_comment where bbs_id=#{id} and order_id=0
+		select id, bbs_id, owner_id, owner, content, order_id from user_comment where bbs_id=#{id} and order_id=0
 	</select>
 	
 	<select id="recomm" resultType="commentVO" >

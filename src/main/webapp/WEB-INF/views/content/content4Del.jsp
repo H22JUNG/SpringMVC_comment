@@ -37,7 +37,7 @@
 		width : 94%;
 	}
 	#form {
-		width:98%;
+		width:100%;
 		display : flex;
 	}
 	#form textarea {
@@ -54,9 +54,6 @@
 		width : 99.1%;
 		padding : 0;
 	}
-	.del {
-	
-	}
 </style>
 </head>
 <body>
@@ -72,7 +69,7 @@
 			<h4>${item.owner}</h4>
 			<p>${item.content}</p>
 			<c:if test="${item.ownerId eq session.id}">
-				<button class="del">삭제</button>
+			<button>삭제</button>
 			</c:if>
 		</div>	
 			<c:forEach var="item2" items="${recomment}">
@@ -80,18 +77,12 @@
 					 <div id="recomm" class="recomm">
 						<h4>${item2.owner}</h4>
 						<p> ↳ ${item2.content}</p>
-						<c:if test="${item2.ownerId eq session.id}">
-							<button class="del">삭제</button>
-						</c:if>
 					</div>
 					 <c:forEach var="item3" items="${recomment}">
 						<c:if test="${item2.id eq item3.orderId}">
 							 <div class="rerecomm">
 								<h4>${item3.owner}</h4>
 								<p> ↳ ${item3.content}</p>
-								<c:if test="${item3.ownerId eq session.id}">
-									<button class="del">삭제</button>
-								</c:if>
 							</div>
 						</c:if>
 					</c:forEach> 
@@ -132,27 +123,6 @@
 		})
 	});
 	
-	for(i=0; i<document.getElementsByClassName("del").legnth; i++){
-	document.getElementsByClassName("del")[i].addEventListener("click", function() {
-		if(confirm("댓글을 삭제하시겠습니까?")) {
-			
-			let simple_data = { content };
-			
-			fetch("${pageContext.request.contextPath}/delcomm",{
-	   		 	method : "POST",
-				headers : {"Content-Type" : "application/json"},
-				body : JSON.stringify(simple_data)
-			}).then(response => response.json(), e => console.log("error!!"))
-			.then(data => {
-				document.getElementsByClassName("del")[i].parentElement.remove();
-
-			
-			})
-			
-		};
-		
-	});
-	}
 	</script>
 
 </body>
