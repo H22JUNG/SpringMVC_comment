@@ -164,6 +164,51 @@ public class PageController {
 			return service.putcomm(id, uservo, commvo); 
 		}
 
-
-
+		//------4번- Del --------------------------------------------------------
+			@GetMapping("/Controller4_1")
+			public String move4_1() {
+				return "login/login4Del";
+			}
+			@PostMapping("/result4_1")
+			public String login4_1_1(UserVO vo, Model model, HttpSession session) {
+				if (service.login(vo)>0) {
+					//리스트 가져오기
+					service.getList(model);
+					//getInfo에서 받아온 정보 넣어주기
+					//vo.setId(service.getInfo(vo).getId());
+					UserVO vo1 = service.getInfo(vo);
+					//정보 세션에 저장
+					session.setAttribute("session", vo1);
+					return "result/result4Del";
+				} 
+				return "login/login4Del";
+			}
+			@GetMapping("/back4_1")//content1에서 뒤로가기 했을 때, 세션 다시 저장 안해도 됨
+			public String login4_2_1(UserVO vo, Model model) {
+				service.getList(model);
+				return "result/result4Del";
+			}
+			@GetMapping("/content4_1")	//제목 누르면 제목, 내용 띄우기
+			public String content4_1(@SessionAttribute("session") UserVO uservo,
+					BbsVO bbsvo, Model model) {
+				bbsvo = service.getContent1(model, bbsvo);
+				service.getComment(model, bbsvo);	//댓글 가져오기
+				service.getRecomm(model); //대댓글 가져오기
+				return "content/content4Del";
+			}
+			
+			@ResponseBody
+			@PostMapping("/putcomm4_1/{id}")
+			public UserCommentVO putcomm1(@PathVariable("id") int id,
+					@SessionAttribute("session") UserVO uservo,
+					@RequestBody UserCommentVO commvo) {
+				return service.putcomm(id, uservo, commvo); 
+			}
+			@ResponseBody
+			@PostMapping("/delcomm")
+			public int delcomm1(@RequestBody int id) {
+				return service.delcomm(id); 
+			}
+			
+			
 }

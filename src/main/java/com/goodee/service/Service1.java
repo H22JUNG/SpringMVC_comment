@@ -64,6 +64,10 @@ public class Service1 {
 		dao.putcomm(commvo);
 		return commvo;
 	}
+	
+	public int delcomm(int id) {
+		return dao.delcomm(id);
+	}
 
 	
 	

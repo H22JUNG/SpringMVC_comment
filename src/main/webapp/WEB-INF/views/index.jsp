@@ -21,6 +21,9 @@
 	<h2>네번째 bbs</h2>
 	<a href="${pageContext.request.contextPath}/Controller4">이동</a>
 	<hr />
+	<h2>네번째_1 bbs</h2>
+	<a href="${pageContext.request.contextPath}/Controller4_1">이동</a>
+	<hr />
 	<h2>다섯번째 bbs</h2>
 	<a href="${pageContext.request.contextPath}/Controller5">이동</a>
 	<hr />

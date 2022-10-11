@@ -119,7 +119,7 @@
 <body>
 	<div id="div1">
 		<div id="center"><h1>로그인</h1></div>
-		<form action="${pageContext.request.contextPath}/result4" method="post">
+		<form action="${pageContext.request.contextPath}/result4_1" method="post">
 			<input type="text" id="id" name="userid" placeholder="아이디를 입력하세요" /><br />
 			<input type="password" id="pw" name="password" placeholder="패스워드를 입력하세요" /><br />
 			<div id="center"><button>Log In</button></div>
