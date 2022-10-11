@@ -31,6 +31,7 @@
 		insert into user_comment(bbs_id, owner_id, owner, content)
 		value (#{bbsId}, #{ownerId}, #{owner}, #{content})
 	</insert>
+	
 	<delete id="delcomm" parameterType="int">
 		delete from user_comment where id=${id}
 	</delete>

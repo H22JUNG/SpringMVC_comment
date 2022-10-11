@@ -63,7 +63,7 @@
 	<h4>제목 : ${vo.title }</h4>
 	<hr />
 	<textarea name="" id="" cols="100" rows="15" >${vo.content}</textarea>
-	<form action="${pageContext.request.contextPath }/back4" method="get">
+	<form action="${pageContext.request.contextPath }/back4_1" method="get">
 		<button>뒤로가기</button>
 	</form>
 	<div id="list">
@@ -72,7 +72,7 @@
 			<h4>${item.owner}</h4>
 			<p>${item.content}</p>
 			<c:if test="${item.ownerId eq session.id}">
-				<button id="${item.id }">삭제</button>
+				<button id="${item.id }" class="del">삭제버튼</button>
 			</c:if>
 		</div>	
 			<c:forEach var="item2" items="${recomment}">
@@ -81,7 +81,7 @@
 						<h4>${item2.owner}</h4>
 						<p> ↳ ${item2.content}</p>
 						<c:if test="${item2.ownerId eq session.id}">
-							<button id="${item2.id }">삭제</button>
+							<button id="${item2.id }" class="del">삭제</button>
 						</c:if>
 					</div>
 					 <c:forEach var="item3" items="${recomment}">
@@ -90,7 +90,7 @@
 								<h4>${item3.owner}</h4>
 								<p> ↳ ${item3.content}</p>
 								<c:if test="${item3.ownerId eq session.id}">
-									<button id="${item3.id }">삭제</button>
+									<button id="${item3.id }" class="del">삭제</button>
 								</c:if>
 							</div>
 						</c:if>
@@ -132,11 +132,14 @@
 		})
 	});
 	
-	for(var i=1; i<${comment}.length; i++) {
-	document.getElementById("${comment.id}").addEventListener("click", function() {
+	<% 
+	Object comment = request.getAttribute("comment");
+	for(int i=0; i<comment.length; i++) { %>
+		console.log(${comment[<%=i%>].id});
+		document.getElementById("${comment[0].id}").addEventListener("click", function() {
 		if(confirm("댓글을 삭제하시겠습니까?")) {
 			
-			let simple_data = { ${comment.id} };
+			let simple_data =  {id : ${comment[0].id} } ;
 			
 			fetch("${pageContext.request.contextPath}/delcomm",{
 	   		 	method : "POST",
@@ -144,13 +147,15 @@
 				body : JSON.stringify(simple_data)
 			}).then(response => response.json(), e => console.log("error!!"))
 			.then(data => {
-				document.getElementById("${comment.id}").parentElement.remove();
-					
+				if(data > 0) {
+				document.getElementById("${comment[0].id}").parentElement.remove();
+				}
 			})
 		};
 		
 	});
-	}
+		<% }%>
+	
 	</script>
 
 </body>

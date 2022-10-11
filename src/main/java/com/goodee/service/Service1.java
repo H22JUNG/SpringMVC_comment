@@ -45,6 +45,9 @@ public class Service1 {
 	//댓글 가져오기
 	public List<UserCommentVO> getComment(Model model, BbsVO vo) {
 		model.addAttribute("comment", dao.comment(vo));
+		System.out.println(model.getAttribute("comment")
+		
+		);
 		return dao.comment(vo);
 	}
 	
