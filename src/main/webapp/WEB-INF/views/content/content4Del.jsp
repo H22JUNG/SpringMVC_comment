@@ -133,10 +133,10 @@
 	});
 	
 	for(var i=1; i<${comment}.length; i++) {
-	document.getElementById("${comment[i].id}").addEventListener("click", function() {
+	document.getElementById("${comment.id}").addEventListener("click", function() {
 		if(confirm("댓글을 삭제하시겠습니까?")) {
 			
-			let simple_data = { ${comment[i].id} };
+			let simple_data = { ${comment.id} };
 			
 			fetch("${pageContext.request.contextPath}/delcomm",{
 	   		 	method : "POST",
@@ -144,7 +144,7 @@
 				body : JSON.stringify(simple_data)
 			}).then(response => response.json(), e => console.log("error!!"))
 			.then(data => {
-				document.getElementById("${comment[i].id}").parentElement.remove();
+				document.getElementById("${comment.id}").parentElement.remove();
 					
 			})
 		};
